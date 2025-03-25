@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - envs
 
 jobs:
   integration:
