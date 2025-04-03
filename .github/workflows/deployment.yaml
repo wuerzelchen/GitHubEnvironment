@@ -12,6 +12,7 @@ jobs:
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/initialize.yaml@main
   
   plan:
+    needs: initialization
     strategy:
       matrix:
         target: [dev, prod]
