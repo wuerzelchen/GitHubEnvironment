@@ -15,31 +15,18 @@ jobs:
     needs: initialization
     strategy:
       matrix:
-        target: [dev]
+        environment: [dev]
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
     with:
-      environment: ${{ matrix.target }}
-    
-  deploy_dev:
-    needs: plan
-    runs-on: ubuntu-latest
-    environment: dev
-    if: #{{ matrix.target == 'dev' }}
-    steps:
-      - name: Deploy DEV
-        run: |
-          echo "Deploying to DEV environment..."
-          # Add your DEV deployment commands
-          echo "DEV Deployment complete."
+      environment: ${{ matrix.environment }}
   
-  deploy_prod:
+  deploy:
+    environment: ${{ needs.plan.outputs.environment }}
     needs: plan
-    environment: prod
-    if: #{{ matrix.target == 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy PROD
         run: |
-          echo "Deploying to PROD environment..."
+          echo "Deploying to ${{ needs.plan.output.environment }} environment..."
           # Add your PROD deployment commands
           echo "PROD Deployment complete."
