@@ -25,8 +25,8 @@ jobs:
     needs: plan
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy PROD
+      - name: Deploy ${{ needs.plan.outputs.environment }} Environment
         run: |
-          echo "Deploying to ${{ needs.plan.output.environment }} environment..."
+          echo "Deploying to ${{ needs.plan.outputs.environment }} environment..."
           # Add your PROD deployment commands
           echo "PROD Deployment complete."
