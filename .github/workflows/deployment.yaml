@@ -18,12 +18,13 @@ jobs:
       environment: ${{ github.ref_name }}
   
   deploy:
-    environment: ${{ github.ref_name }
+    environment: ${{ github.ref_name }}
     needs: plan
     runs-on: ubuntu-latest
     steps:
       - name: Deploy ${{ github.ref_name }} Environment
         run: |
+          exit 1
           echo "Deploying to ${{ github.ref_name }} environment..."
           # Add your ${{ github.ref_name }} deployment commands
           echo "${{ github.ref_name }} Deployment complete."
