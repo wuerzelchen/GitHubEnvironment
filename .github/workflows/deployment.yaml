@@ -3,8 +3,8 @@ name: Multi-Stage Deployment
 on:
   push:
     branches:
-      - main
-      - envs
+      - dev
+      - prod
   workflow_dispatch:
 
 jobs:
