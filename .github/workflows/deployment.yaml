@@ -11,22 +11,16 @@ jobs:
   initialization:
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/initialize.yaml@main
   
-  planning_dev:
-    needs: initialization
-    runs-on: ubuntu-latest
-    steps:
-      - name: Planning DEV
-        run: echo "Running planning for DEV environment..."
-  
-  planning_prod:
-    needs: initialization
-    runs-on: ubuntu-latest
-    steps:
-      - name: Planning PROD
-        run: echo "Running planning for PROD environment..."
-  
+  plan:
+    strategy:
+      matrix:
+        target: [dev, prod]
+    uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
+    with:
+      environment: ${{ matrix.target }}
+    
   deploy_dev:
-    needs: planning_dev
+    needs: plan
     runs-on: ubuntu-latest
     steps:
       - name: Deploy DEV
@@ -36,7 +30,7 @@ jobs:
           echo "DEV Deployment complete."
   
   deploy_prod:
-    needs: planning_prod
+    needs: plan
     runs-on: ubuntu-latest
     steps:
       - name: Deploy PROD
