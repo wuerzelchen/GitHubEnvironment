@@ -13,19 +13,16 @@ jobs:
   
   plan:
     needs: initialization
-    strategy:
-      matrix:
-        environment: [dev, prod]
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
     with:
-      environment: ${{ matrix.environment }}
+      environment: ${{ github.ref_name }}
   
   deploy:
-    environment: ${{ needs.plan.outputs.environment }}
+    environment: ${{ github.ref_name }}
     needs: plan
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy ${{ needs.plan.outputs.environment }} Environment
+      - name: Deploy ${{ github.ref_name }} Environment
         run: |
           echo "Deploying to ${{ needs.plan.outputs.environment }} environment..."
           # Add your PROD deployment commands
