@@ -24,6 +24,6 @@ jobs:
     steps:
       - name: Deploy ${{ github.ref_name }} Environment
         run: |
-          echo "Deploying to ${{ needs.plan.outputs.environment }} environment..."
+          echo "Deploying to ${{ github.ref_name }} environment..."
           # Add your ${{ github.ref_name }} deployment commands
           echo "${{ github.ref_name }} Deployment complete."
