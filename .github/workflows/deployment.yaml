@@ -23,6 +23,8 @@ jobs:
   deploy_dev:
     needs: plan
     runs-on: ubuntu-latest
+    environment: dev
+    if: #{{ matrix.target == 'dev' }}
     steps:
       - name: Deploy DEV
         run: |
@@ -32,6 +34,8 @@ jobs:
   
   deploy_prod:
     needs: plan
+    environment: prod
+    if: #{{ matrix.target == 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy PROD
