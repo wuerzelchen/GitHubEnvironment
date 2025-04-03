@@ -8,7 +8,7 @@ on:
 
 jobs:
   initialization:
-    uses: wuerzelchen/ReusableWorkflows/.github/workflows/initialization.yaml@main
+    uses: wuerzelchen/ReusableWorkflows/.github/workflows/initialize.yaml@main
   
   planning_dev:
     needs: initialization
