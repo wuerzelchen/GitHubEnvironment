@@ -7,24 +7,18 @@ on:
       - envs
 
 jobs:
-  integration:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Run integration tests
-        run: echo "Running integration tests..."
+  initialization:
+    uses: wuerzelchen/ReusableWorkflows/.github/workflows/initialization.yaml@main
   
   planning_dev:
-    needs: integration
+    needs: initialization
     runs-on: ubuntu-latest
     steps:
       - name: Planning DEV
         run: echo "Running planning for DEV environment..."
   
   planning_prod:
-    needs: integration
+    needs: initialization
     runs-on: ubuntu-latest
     steps:
       - name: Planning PROD
