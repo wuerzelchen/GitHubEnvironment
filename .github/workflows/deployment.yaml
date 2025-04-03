@@ -25,5 +25,5 @@ jobs:
       - name: Deploy ${{ github.ref_name }} Environment
         run: |
           echo "Deploying to ${{ needs.plan.outputs.environment }} environment..."
-          # Add your PROD deployment commands
-          echo "PROD Deployment complete."
+          # Add your ${{ github.ref_name }} deployment commands
+          echo "${{ github.ref_name }} Deployment complete."
