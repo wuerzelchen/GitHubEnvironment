@@ -15,7 +15,7 @@ jobs:
     needs: initialization
     strategy:
       matrix:
-        target: [dev, prod]
+        target: [dev]
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
     with:
       environment: ${{ matrix.target }}
