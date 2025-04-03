@@ -18,7 +18,7 @@ jobs:
       environment: ${{ github.ref_name }}
   
   deploy:
-    environment: ${{ github.ref_name }}
+    environment: ${{ github.ref_name }
     needs: plan
     runs-on: ubuntu-latest
     steps:
