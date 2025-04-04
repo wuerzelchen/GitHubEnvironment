@@ -19,12 +19,12 @@ jobs:
   
   plan-prod:
     needs: initialization
+    if: github.ref_name != 'prod'
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
     with:
       environment: prod
   
   deploy:
-    if: github.ref_name != 'prod'
     needs: plan
     runs-on: ubuntu-latest
     steps:
