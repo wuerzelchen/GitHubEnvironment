@@ -17,8 +17,13 @@ jobs:
     with:
       environment: ${{ github.ref_name }}
   
+  plan-prod:
+    needs: initialization
+    uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
+    with:
+      environment: prod
+  
   deploy:
-    environment: ${{ github.ref_name }}
     needs: plan
     runs-on: ubuntu-latest
     steps:
