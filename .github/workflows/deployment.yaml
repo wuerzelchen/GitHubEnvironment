@@ -19,10 +19,12 @@ jobs:
   
   plan-prod:
     needs: initialization
-    if: github.ref_name != 'prod'
+    strategy:
+      matrix:
+        environment: [dev, prod]
     uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
     with:
-      environment: prod
+      environment: ${{ matrix.environment }}
   
   deploy:
     needs: plan
