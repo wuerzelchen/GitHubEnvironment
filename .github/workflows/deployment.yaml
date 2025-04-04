@@ -24,7 +24,6 @@ jobs:
       environment: prod
   
   deploy:
-    environment: ${{ github.ref_name }}
     needs: plan
     runs-on: ubuntu-latest
     steps:
