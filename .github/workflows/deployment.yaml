@@ -13,12 +13,6 @@ jobs:
   
   plan:
     needs: initialization
-    uses: wuerzelchen/ReusableWorkflows/.github/workflows/plan.yaml@main
-    with:
-      environment: ${{ github.ref_name }}
-  
-  plan-prod:
-    needs: initialization
     strategy:
       matrix:
         environment: [dev, prod]
