@@ -24,6 +24,7 @@ jobs:
       environment: prod
   
   deploy:
+    if: github.ref_name != 'prod'
     needs: plan
     runs-on: ubuntu-latest
     steps:
